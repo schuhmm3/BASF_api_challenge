@@ -11,16 +11,12 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'net.serenity-bdd.aggregator'
 
-group = 'serenitybdd-seed'
-version = '2.0.2'
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
     mavenLocal()
     jcenter()
-    maven { url "http://dl.bintray.com/epam/reportportal" }
 }
 
 dependencies {
@@ -28,7 +24,6 @@ dependencies {
     implementation "net.serenity-bdd:serenity-core:${property('serenity.version')}"
     implementation "net.serenity-bdd:serenity-cucumber:${property('cucumber.version')}"
     implementation "org.json:json:20190722"
-    implementation "org.influxdb:influxdb-java:2.17"
 }
 
 // Allow build to continue on test failure

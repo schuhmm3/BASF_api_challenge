@@ -12,17 +12,27 @@ public class GlueCode {
     @Steps
     private SerenitySteps steps;
 
-    @When("^I request to get all the people$")
+    @When("^I get all the people$")
     public void iRequestAll() {
         steps.getAll();
     }
 
-    @When("I request to create a person")
+    @When("^I create a person$")
     public void iRequestToCreateNewPerson() {
-        steps.createPerson();
+        steps.createPerson(false);
     }
 
-    @Then("I should get (.*) status code")
+    @When("^I create a person with an empty body$")
+    public void iRequestToCreateNewPersonEmptyBody() {
+        steps.createPerson(true);
+    }
+
+    @When("^I create a person without firstName$")
+    public void iRequestToCreateNewPersonNoName() {
+        steps.createPersonNoFirstName();
+    }
+
+    @Then("^I should get (.*) status code$")
     public void iShouldGetStatusCode(int expectedStatusCode) {
         steps.verifyStatusCode(expectedStatusCode);
     }

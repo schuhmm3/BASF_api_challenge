@@ -40,14 +40,33 @@ public class SerenitySteps {
     }
 
     /**
+     * Creates a new person without firstName
+     */
+    @Step
+    public void createPersonNoFirstName() {
+        callCreatePerson(false, "create_person_missing_field.json");
+    }
+
+    /**
+     * Creates a new person
+     * @param isEmptyBody bolean tru/false depending on whether we want an empty body to be used
+     */
+    @Step
+    public void createPerson(boolean isEmptyBody) {
+        callCreatePerson(isEmptyBody, "create_person.json");
+    }
+
+    /**
      * Performs a PUT operation that will create a new person
      */
     @Step
-    public void createPerson() {
+    public void callCreatePerson(boolean isEmptyBody, String resource) {
         try {
-            InputStream is = this.getClass().getResourceAsStream("/requests/create_person.json");
-            JSONObject body = requestHelper.jsonInputStreamToJsonObject(is);
-            spec = spec.body(body.toMap());
+            if (!isEmptyBody) {
+                InputStream is = this.getClass().getResourceAsStream("/requests/" + resource);
+                JSONObject body = requestHelper.jsonInputStreamToJsonObject(is);
+                spec = spec.body(body.toMap());
+            }
             requestHelper.executeRequest(spec, "PUT", getEndpoint());
         } catch (Exception e) {
             Assert.fail(e.getMessage());

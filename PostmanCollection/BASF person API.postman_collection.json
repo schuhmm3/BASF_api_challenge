@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "5cfade0b-b7dd-4fb8-a95d-afa1758b8737",
+		"name": "BASF person API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all people",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ae25a17-2ddb-4311-9609-a87891a7a740",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "pwd!",
+						"username": "user"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://azure-qknows-prod-challenges-1.northeurope.cloudapp.azure.com/api/person/all"
+			},
+			"response": []
+		},
+		{
+			"name": "GET one person",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6da19c3-028d-4f2d-980d-8a4058d7cb43",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify id\", function () { ",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"});",
+							"",
+							"pm.test(\"Verify firstName\", function () { ",
+							"    pm.expect(jsonData).to.have.property('firstName');",
+							"});",
+							"",
+							"pm.test(\"Verify lastName\", function () { ",
+							"    pm.expect(jsonData).to.have.property('lastName');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "pwd!",
+						"username": "user"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://azure-qknows-prod-challenges-1.northeurope.cloudapp.azure.com/api/person/5f8479a8581e7709ff3d64ab"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Create one person",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76ac29f9-3854-4ff0-a0e1-ba48ae5b15ce",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify id\", function () { ",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "pwd!",
+						"username": "user"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"test firstName\",\n  \"lastName\": \"test lastName\"\n}"
+				},
+				"url": "http://azure-qknows-prod-challenges-1.northeurope.cloudapp.azure.com/api/person/"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Create one person with just one field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd2f15a0-0b09-4351-9f68-19f03e57d89c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify id\", function () { ",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "pwd!",
+						"username": "user"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"test firstName\",\n  \"lastName\": \"test lastName\"\n}"
+				},
+				"url": "http://azure-qknows-prod-challenges-1.northeurope.cloudapp.azure.com/api/person/"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Create one person empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ebc3645-a5b2-4446-9ee6-93cdc329f4be",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify id\", function () { ",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "pwd!",
+						"username": "user"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"test firstName\",\n  \"lastName\": \"test lastName\"\n}"
+				},
+				"url": "http://azure-qknows-prod-challenges-1.northeurope.cloudapp.azure.com/api/person/"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
