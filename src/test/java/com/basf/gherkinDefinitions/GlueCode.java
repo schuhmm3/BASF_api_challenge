@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class GlueCode {
 
@@ -47,6 +48,12 @@ public class GlueCode {
     @When("^I try to retrieve previously created person$")
     public void iTryToRetrievePreviousCreatedPerson() {
         final String personId = steps.getResponseNodeValue("id");
+        steps.getPersonById(personId);
+    }
+
+    @When("^I try to retrieve non-created person$")
+    public void iTryToRetrieveNonCreatedPerson() {
+        final String personId = RandomStringUtils.random(20, true, true);
         steps.getPersonById(personId);
     }
 
