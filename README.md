@@ -11,6 +11,8 @@ The programming language of election is Java, one of the most spread languages i
 
 Serenity also offers integration with RestAssured, a well-known Java library used for API test automation.
 
+I also evaluated the possibility of using Postman (that can be run from command-line with Newman tool). Even though I finally discarded this option, you can find the collection and the environment that I created for exploratory testing under PostmanCollection folder. You can import those files for being used.
+
 ## How to deploy and run the tests 
   
 **Execution instructions**

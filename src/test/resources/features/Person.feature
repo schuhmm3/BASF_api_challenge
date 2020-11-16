@@ -5,6 +5,10 @@ Feature: Basic API feature - Person API Crud
   Scenario: Get all
     Given I get all the people
     Then I should get 200 status code
+    And The following response fields should exist and have not null value
+      | id        |
+      | firstName |
+      | lastName  |
 
   @positive
   Scenario: Create a new person
