@@ -161,3 +161,6 @@ Generating Serenity Reports for BASF-api-challenge to directory /home/user/chall
 BUILD SUCCESSFUL in 9s
 7 actionable tasks: 7 executed
 ```
+
+
+![serenity-report.jpg](serenity-report.jpg)
