@@ -75,3 +75,99 @@ While exploring and automating the provided API at http://azure-qknows-prod-chal
     No DELETE endpoint is provided. 
     
     That means that you're creating objects but since there's no way to delete them the degradation of the performance is getting worse and worse to the point that the whole system can become unresponsive e.g. while performing Load Tests.
+    
+    
+    
+    # Results
+    
+    
+```
+user@azure:~/challenges/test/aterrong/BASF_api_challenge$ gradle clean test aggregate
+
+> Task :test
+
+com.basf.serenityRunner.TestRunner STANDARD_ERROR
+    SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+    SLF4J: Defaulting to no-operation (NOP) logger implementation
+    SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/home/user/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.2.2/6dacbe18e5eaa7f6c9c36db33b42e7985e94ce77/guice-4.2.2.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+    @person @smoke
+    Feature: Basic API feature - Person API Crud
+
+      @person @smoke @positive
+      Scenario: Get all                                                        # src/test/resources/features/Person.feature:5
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Get all STANDARD_OUT
+        Given I get all the people                                             # GlueCode.iRequestAll()
+        Then I should get 200 status code                                      # GlueCode.iShouldGetStatusCode(int)
+        And The following response fields should exist and have not null value # GlueCode.theResponseFieldsShouldExistAndHaveValue(DataTable)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+      @person @smoke @positive
+      Scenario: Create a new person                                            # src/test/resources/features/Person.feature:14
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Create a new person STANDARD_OUT
+        Given I create a person                                                # GlueCode.iRequestToCreateNewPerson()
+        Then I should get 200 status code                                      # GlueCode.iShouldGetStatusCode(int)
+        And The following response fields should exist and have not null value # GlueCode.theResponseFieldsShouldExistAndHaveValue(DataTable)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+      @person @smoke @positive
+      Scenario: Retrieve an existing person                                    # src/test/resources/features/Person.feature:21
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Retrieve an existing person STANDARD_OUT
+        Given I create a person                                                # GlueCode.iRequestToCreateNewPerson()
+        When I try to retrieve previously created person                       # GlueCode.iTryToRetrievePreviousCreatedPerson()
+        Then I should get 200 status code                                      # GlueCode.iShouldGetStatusCode(int)
+        And The following response fields should exist and have not null value # GlueCode.theResponseFieldsShouldExistAndHaveValue(DataTable)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+      @person @smoke @negative
+      Scenario: Retrieve a non-existing person     # src/test/resources/features/Person.feature:31
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Retrieve a non-existing person STANDARD_OUT
+        Given I try to retrieve non-created person # GlueCode.iTryToRetrieveNonCreatedPerson()
+        Then I should get 404 status code          # GlueCode.iShouldGetStatusCode(int)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+      @person @smoke @negative
+      Scenario: Create a new person with an empty body # src/test/resources/features/Person.feature:37
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Create a new person with an empty body STANDARD_OUT
+        Given I create a person with an empty body     # GlueCode.iRequestToCreateNewPersonEmptyBody()
+        Then I should get 400 status code              # GlueCode.iShouldGetStatusCode(int)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+      @person @smoke @negative
+      Scenario: Create a new person without fisrtName                          # src/test/resources/features/Person.feature:43
+
+com.basf.serenityRunner.TestRunner > Basic API feature - Person API Crud.Create a new person without fisrtName STANDARD_OUT
+        Given I create a person without firstName                              # GlueCode.iRequestToCreateNewPersonNoName()
+        Then I should get 200 status code                                      # GlueCode.iShouldGetStatusCode(int)
+        And The following response fields should exist and have not null value # GlueCode.theResponseFieldsShouldExistAndHaveValue(DataTable)
+
+com.basf.serenityRunner.TestRunner STANDARD_OUT
+
+    6 Scenarios (6 passed)
+    17 Steps (17 passed)
+    0m5.565s
+
+
+> Task :aggregate
+Generating Serenity Reports for BASF-api-challenge to directory /home/user/challenges/test/aterrong/BASF_api_challenge/target/site/serenity
+
+
+BUILD SUCCESSFUL in 9s
+7 actionable tasks: 7 executed
+```
